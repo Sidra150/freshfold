@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:freshfold_app/Views/Screens/Bottom_Nav/bottom_navigation.dart';
 
-import '../Home/home.dart';
 import '../Shedule_PickUp/PickUp.dart';
 
 class LaundryServicesPage extends StatefulWidget {
+  const LaundryServicesPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LaundryServicesPageState createState() => _LaundryServicesPageState();
 }
 
@@ -177,7 +179,7 @@ class LaundryItemCard extends StatelessWidget {
   final VoidCallback onIncrement;
   final VoidCallback onDecrement;
 
-  LaundryItemCard(
+  const LaundryItemCard(
       {required this.item,
       required this.onIncrement,
       required this.onDecrement});

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freshfold_app/Views/Screens/Bottom_Nav/bottom_navigation.dart';
 import 'package:freshfold_app/Views/Screens/Customer_Screen/Home/home.dart';
 
 import '../Order_Details/order_details.dart';
@@ -33,7 +34,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen>
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(),
+                  builder: (context) => bottomNav(),
                 ));
           },
         ),

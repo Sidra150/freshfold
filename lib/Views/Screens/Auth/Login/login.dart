@@ -4,152 +4,190 @@ import 'package:freshfold_app/Views/Screens/Launch_Screen/launch.dart';
 
 import '../New_password/new_password.dart';
 
-class LoginScreen extends StatelessWidget {
+  
+
+ class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Launch(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => Launch(),
+              ),
+            );
           },
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Center(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(
                 child: Image(
-              image: AssetImage("assets/logo.png"),
-              height: 200,
-            )),
-            const Text(
-              "Resume the Adventure",
-              style: TextStyle(
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              "Log in and discover your favorite laundry services and dry cleaners.",
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.grey[600],
-              ),
-            ),
-            const SizedBox(height: 32.0),
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Email",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+                  image: AssetImage("assets/logo.png"),
+                  height: 200,
                 ),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+              const Text(
+                "Resume the Adventure",
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                suffixIcon: const Icon(Icons.visibility_off),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: false,
-                      onChanged: (bool? value) {},
-                    ),
-                    const Text("Remember me"),
-                  ],
+              const SizedBox(height: 8.0),
+              Text(
+                "Log in and discover your favorite laundry services and dry cleaners.",
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey[600],
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
+              ),
+              const SizedBox(height: 10.0),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Full Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15.0),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15.0),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Phone Number(Optional)",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15.0),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  suffixIcon: const Icon(Icons.visibility_off),
+                ),
+              ),
+              const SizedBox(height: 14.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: false,
+                        onChanged: (bool? value) {},
+                      ),
+                      const Text("Remember me"),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const newPassword(),
-                        ));
-                  },
-                  child: const Text("Forgot password"),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30.0),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                elevation: 3,
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                side: const BorderSide(color: Colors.grey),
-                minimumSize: const Size(double.infinity, 50.0),
+                        ),
+                      );
+                    },
+                    child: const Text("Forgot password"),
+                  ),
+                ],
               ),
-              child: const Text("Create an account"),
-            ),
-            const SizedBox(height: 22.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
+              const SizedBox(height: 30.0),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  side: const BorderSide(color: Colors.grey, width: 0.3),
+                  minimumSize: const Size(double.infinity, 50.0),
+                ),
+                child: const Text("Create an account"),
+              ),
+              const SizedBox(height: 22.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => bottomNav(),
-                    ));
-              },
-              style: ElevatedButton.styleFrom(
-                elevation: 3,
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+                      builder: (context) => const bottomNav(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  minimumSize: const Size(double.infinity, 50.0),
                 ),
-                minimumSize: const Size(double.infinity, 50.0),
+                child: const Text("Login"),
               ),
-              child: const Text("Login"),
-            ),
-            const Spacer(),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.g_translate, color: Colors.blue),
-                  onPressed: () {},
+              const SizedBox(height: 15.0),
+              Center(
+                child: Text(
+                  "Or Login With",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.grey[600],
+                  ),
                 ),
-                const SizedBox(width: 16.0),
-                IconButton(
-                  icon: const Icon(Icons.facebook, color: Colors.blue),
-                  onPressed: () {},
-                ),
-                const SizedBox(width: 16.0),
-                IconButton(
-                  icon: const Icon(Icons.camera_alt, color: Colors.pink),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: 32.0),
-          ],
+              ),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.g_translate, color: Colors.blue),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(width: 16.0),
+                  IconButton(
+                    icon: const Icon(Icons.facebook, color: Colors.blue),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(width: 16.0),
+                  IconButton(
+                    icon: const Icon(Icons.camera_alt, color: Colors.pink),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32.0),
+            ],
+          ),
         ),
       ),
     );

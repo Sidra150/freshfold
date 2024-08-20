@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freshfold_app/Utils/Constants.dart';
 import 'package:freshfold_app/Views/Screens/Customer_Screen/Notifications/notifications.dart';
+import 'package:freshfold_app/Views/Screens/Customer_Screen/Order_Details/order_details.dart';
 
 import '../Laundry_service/laundry_services.dart';
 import '../Membership/plans.dart';
@@ -301,6 +302,8 @@ import '../My_Orders/my_orders.dart';
 //   }
 // }
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -453,6 +456,7 @@ class HomePage extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: 'Search Laundry store',
                 prefixIcon: const Icon(Icons.search),
+          
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -481,11 +485,11 @@ class HomePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LaundryServicesPage(),
-                          ));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => LaundryServicesPage(),
+                      //     ));
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -513,10 +517,13 @@ class HomePage extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                ServiceCard(icon: Icons.local_laundry_service, label: 'Iron'),
-                ServiceCard(icon: Icons.dry_cleaning, label: 'Dry'),
-                ServiceCard(icon: Icons.checkroom, label: 'Fold'),
-                ServiceCard(icon: Icons.wash, label: 'Wash'),
+                ServiceCard(
+                    icon: Icons.local_laundry_service, label: 'Wash,Fold,Iron'),
+                ServiceCard(
+                    icon: Icons.dry_cleaning,
+                    label: 'Premium Wash fold and iron'),
+                ServiceCard(icon: Icons.checkroom, label: 'Dry cleaning '),
+                ServiceCard(icon: Icons.more, label: 'Much More'),
               ],
             ),
             const SizedBox(height: 16),
@@ -531,21 +538,21 @@ class HomePage extends StatelessWidget {
                 children: [
                   SubscriptionCard(
                     planName: 'Basic Plan',
-                    price: '\$9.99/Month',
-                    features: ['10 Pickups', 'Real Time', 'Email'],
+                    price: '\$25.99/monh',
+                    features: [' Wash fold iron '],
                   ),
                   const SizedBox(width: 16),
                   SubscriptionCard(
                     planName: 'Standard Plan',
-                    price: '\$19.99/Month',
-                    features: ['20 Pickups', 'Real Time', 'Sms'],
+                    price: '\$45.99/ month',
+                    features: ['Wash fold Iron , stain removal '],
                     highlight: true,
                   ),
                   const SizedBox(width: 16),
                   SubscriptionCard(
                     planName: 'Premium Plan',
-                    price: '\$29.99/Month',
-                    features: ['Unlimited', 'Real Time', 'Sms & Email'],
+                    price: '\$69.99/month',
+                    features: ['All Services'],
                   ),
                 ],
               ),
@@ -586,28 +593,37 @@ class ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.blue),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 60, color: Colors.blue),
-          const SizedBox(height: 8),
-          Text(label, style: const TextStyle(fontSize: 16)),
-        ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LaundryServicesPage(),
+            ));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.blue),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 60, color: Colors.blue),
+            const SizedBox(height: 8),
+            Text(label, style: const TextStyle(fontSize: 16)),
+          ],
+        ),
       ),
     );
   }
@@ -628,34 +644,44 @@ class SubscriptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: highlight ? Colors.blue[50] : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: highlight ? Border.all(color: Colors.blue) : null,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(planName,
-              style:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8),
-          Text(price, style: const TextStyle(fontSize: 14, color: Colors.grey)),
-          const SizedBox(height: 8),
-          for (var feature in features)
-            Text(feature, style: const TextStyle(fontSize: 14)),
-        ],
+    return GestureDetector(
+      onDoubleTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SubscriptionScreen(),
+            ));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        decoration: BoxDecoration(
+          color: highlight ? Colors.blue[50] : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: highlight ? Border.all(color: Colors.blue) : null,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(planName,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text(price,
+                style: const TextStyle(fontSize: 14, color: Colors.grey)),
+            const SizedBox(height: 8),
+            for (var feature in features)
+              Text(feature, style: const TextStyle(fontSize: 14)),
+          ],
+        ),
       ),
     );
   }
@@ -676,44 +702,54 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Icon(Icons.access_time, size: 20, color: Colors.orange),
-                  const SizedBox(width: 8),
-                  Text('Order #$orderNumber (2 bags)',
-                      style: const TextStyle(fontSize: 16)),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text('$time, $date',
-                  style: const TextStyle(fontSize: 14, color: Colors.grey)),
-            ],
-          ),
-          Text('\$$price',
-              style:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-        ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OrderDetailScreen(),
+            ));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.access_time,
+                        size: 20, color: Colors.orange),
+                    const SizedBox(width: 8),
+                    Text('Order #$orderNumber (2 bags)',
+                        style: const TextStyle(fontSize: 16)),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text('$time, $date',
+                    style: const TextStyle(fontSize: 14, color: Colors.grey)),
+              ],
+            ),
+            Text('\$$price',
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freshfold_app/Views/Screens/Bottom_Nav/bottom_navigation.dart';
+import 'package:freshfold_app/Views/Screens/Customer_Screen/My_Orders/my_orders.dart';
 
 import '../Add_Address/address.dart';
 
@@ -77,7 +79,7 @@ class OrderDetailScreen extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => bottomNav(),
+                  builder: (context) => MyOrdersScreen(),
                 ));
           },
         ),
@@ -91,6 +93,8 @@ class OrderDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             _buildOrderSummary(),
+            const SizedBox(height: 16),
+            _images(),
             const SizedBox(height: 16),
             GestureDetector(
               onTap: () => _showOrderStatus(context),
@@ -123,6 +127,12 @@ class OrderDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _images() {
+    return Row(
+      children: [Image(image: AssetImage("assets/t-shirt.png"))],
     );
   }
 
